@@ -1,0 +1,5 @@
+Cluster: test
+mwQrnOurNcLtxyzo
+Your current IP address (187.171.47.134) has been added to enable local connectivity.
+mongodb+srv://hostingmiopags:mwQrnOurNcLtxyzo@test.qhydteh.mongodb.net/
+Replace <password> with the password for the hostingmiopags user. Ensure any options are
