@@ -1,0 +1,65 @@
+import socket
+import threading
+
+HOST = '192.168.137.1'  # Dirección IP del servidor (0.0.0.0 para escuchar en todas las interfaces)
+PORT = 20000           # Número de puerto para escuchar conexiones entrantes
+
+clients = {}           # Diccionario para almacenar los sockets de los clientes y sus nombres
+
+def broadcast(message, sender_socket, sender_name):
+    """Envía un mensaje a todos los clientes conectados"""
+    for client_socket, client_name in clients.items():
+        if client_socket != sender_socket:
+            try:
+                client_socket.send(f'{sender_name}: {message}'.encode())
+            except:
+                client_socket.close()
+                del clients[client_socket]
+
+def handle_client(client_socket, addr):
+    """Maneja las conexiones entrantes y recibe los mensajes de los clientes"""
+    # Asigna un nombre al cliente según su dirección IP
+    if addr[0] == '192.168.137.195':
+        client_name = 'Pan'
+    elif addr[0] == '192.168.137.165':
+        client_name = 'Beto'
+    elif addr[0] == '192.168.137.184':
+        client_name = 'Xinol'
+    else:
+        client_name = 'Cliente desconocido'
+
+    clients[client_socket] = client_name
+
+    while True:
+        try:
+            data = client_socket.recv(1024)
+            if not data:
+                break
+            if data:
+                # print(f'Recibido de {client_name} ({addr}): {data.decode()}')
+                print(f'Recibido de {client_name}: {data.decode()}')
+                broadcast(data.decode(), client_socket, client_name)
+                # Responder al cliente
+                response = b'Mensaje recibido correctamente'
+                client_socket.send(response)
+        except:
+            del clients[client_socket]
+            client_socket.close()
+            break
+
+def start_server():
+    """Inicia el servidor y acepta las conexiones entrantes"""
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind((HOST, PORT))
+    server_socket.listen(5)  # Escucha hasta 5 conexiones entrantes
+
+    print(f'Servidor escuchando en {HOST}:{PORT}')
+
+    while True:
+        client_socket, addr = server_socket.accept()
+        print(f'Conexión entrante de {addr}')
+        client_thread = threading.Thread(target=handle_client, args=(client_socket, addr))
+        client_thread.start()
+
+if __name__ == '__main__':
+    start_server()
