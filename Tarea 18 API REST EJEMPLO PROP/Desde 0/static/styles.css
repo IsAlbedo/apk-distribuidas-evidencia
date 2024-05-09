@@ -1,0 +1,108 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+  }
+  
+  .calculator {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+  
+  input[type="text"] {
+    width: 85%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  
+  button {
+    width: 30%;
+    padding: 5px;
+    margin: 2px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  #resultadoNum3, #resultado{
+    opacity: 0;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  h1, h2 {
+    color: #333;
+    margin-top: 0;
+  }
+  
+  #tabla-operaciones-compuestas, #tabla-operaciones-unicas {
+    padding-left: 20px;
+    display: block;
+    width: 400px;
+    height: 400px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+  
+  .operations {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .operations2 {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #007BFF;
+    color: white;
+  }
+  
